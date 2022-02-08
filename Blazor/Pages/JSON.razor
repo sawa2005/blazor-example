@@ -1,0 +1,49 @@
+﻿@page "/json"
+@inject HttpClient Http
+
+<h3>JSON</h3>
+
+@if (user == null)
+{
+    <p>Laddar...</p>
+} else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>AnvändarID</th>
+                <th>ID</th>
+                <th>Titel</th>
+                <th>Slutförd</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach(var todos in user)
+            {
+                <tr>
+                    <td>@todos.userId</td>
+                    <td>@todos.id</td>
+                    <td>@todos.title</td>
+                    <td>@todos.completed</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+    private User[]? user;
+
+    protected override async Task OnInitializedAsync()
+    {
+        user = await Http.GetFromJsonAsync<User[]>("https://jsonplaceholder.typicode.com/todos");
+    }
+
+    public class User
+    {
+        public int userId { get; set; }
+        public int id { get; set; }
+        public string? title { get; set; }
+        public bool completed { get; set; }
+    }
+}

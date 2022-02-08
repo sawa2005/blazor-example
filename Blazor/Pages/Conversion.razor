@@ -1,0 +1,38 @@
+﻿@page "/conversion"
+
+<h3>Konvertering</h3>
+
+<div>
+    <strong>Meter till fot</strong><br/>
+    <label for="meter">Mata in meter</label>
+    <input @bind="meter"/>
+    <button @onclick="convertMeter">Konvertera till fot</button>
+    <p>@foot</p>
+</div>
+
+<div>
+    <strong>km/h till mph</strong><br/>
+    <label for="meter">Mata in km/h</label>
+    <input @bind="kmh"/>
+    <button @onclick="convertKmh">Konvertera till mph</button>
+    <p>@mph</p>
+</div>
+
+
+@code {
+    double meter;
+    string foot = "Resultat: ";
+
+    private void convertMeter()
+    {
+        foot = "Resultat: " + Math.Round(meter * 3.281, 1) + " fot";
+    }
+
+    double kmh;
+    string mph = "Resultat: ";
+
+    private void convertKmh()
+    {
+        mph = "Resultat: " + Math.Round(kmh / 1.609) + " mph";
+    }
+}

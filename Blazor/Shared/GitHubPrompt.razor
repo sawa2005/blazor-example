@@ -1,0 +1,15 @@
+﻿<div class="alert alert-secondary mt-4">
+    <strong>@Title</strong>
+
+    <span class="text-nowrap">
+        Besök min
+        <a target="_blank" class="font-weight-bold link-dark" href="https://github.com/sawa2005">GitHub</a>
+    </span>
+    för att se mina projekt.
+</div>
+
+@code {
+    // Demonstrates how a parent component can supply parameters
+    [Parameter]
+    public string? Title { get; set; }
+}
